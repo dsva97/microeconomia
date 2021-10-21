@@ -45,42 +45,44 @@ const Operation = ({ first, second }) => {
 };
 
 const OperationResult = ({ first, second, firstLabel, secondLabel }) => {
+  const Second = () => (
+    <TextField
+      style={{ padding: "0.25em" }}
+      value={second}
+      onChange={(e) => Number(e.target.value)}
+      type="number"
+      label={secondLabel}
+      readOnly={true}
+      variant="outlined"
+      focused={true}
+    />
+  );
+  const First = () => (
+    <TextField
+      value={first}
+      onChange={(e) => Number(e.target.value)}
+      type="number"
+      label={firstLabel}
+      readOnly={true}
+      variant="outlined"
+      focused={true}
+    />
+  );
   return (
     <div>
       <Division
         dividendo={
           <div style={{ display: "inline-flex", alignItems: "center" }}>
-            (
-            <TextField
-              style={{ padding: "0.25em" }}
-              value={second}
-              onChange={(e) => Number(e.target.value)}
-              type="number"
-              label={secondLabel}
-              readOnly={true}
-              variant="outlined"
-              focused={true}
-            />
-            -
-            <TextField
-              value={first}
-              onChange={(e) => Number(e.target.value)}
-              type="number"
-              label={firstLabel}
-              readOnly={true}
-              variant="outlined"
-              focused={true}
-            />
-            )
+            (<Second />- <First />)
           </div>
         }
         divisor={
           <Division
             color="brown"
             dividendo={
-              <span>
-                ({second} + {first})
-              </span>
+              <div style={{ display: "inline-flex", alignItems: "center" }}>
+                (<Second /> + <First />)
+              </div>
             }
             divisor={<span>2</span>}
           />
@@ -233,12 +235,16 @@ export const Home = () => {
         />
         <br />
 
-        <Box>
-          <strong>Result:</strong>
-          {result || "Error"}
-          <br />
-          {isNaN(result) ? "Algunos valores deben ser diferentes de 0" : null}
-        </Box>
+        <TextField
+          style={{ margin: "1em" }}
+          value={result}
+          onChange={(e) => Number(e.target.value)}
+          readOnly={true}
+          focused={true}
+          type="number"
+          label="Result"
+          variant="outlined"
+        />
       </div>
       <div>
         <Resolution {...data} />
