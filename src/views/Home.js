@@ -104,7 +104,7 @@ const Formula = () => {
     </div>
   );
 };
-const Ejecucion = ({ qx1, qx2, py1, py2, result }) => {
+const Ejecucion = ({ qx1, qx2, py1, py2 }) => {
   return (
     <div>
       <h4>Ejecución:</h4>
@@ -140,13 +140,27 @@ const Resolution = ({ qx1, qx2, py1, py2, result }) => {
         margin-left: 1em;
       }
       `}</style>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Division
-          dividendo={<Operation first={qx1} second={qx2} />}
-          divisor={<Operation first={py1} second={py2} />}
-        />
-        <strong>=</strong>
-        <strong>{result}</strong>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "auto 1fr",
+          gridGap: "1em",
+        }}
+      >
+        <div style={{ padding: "1em", borderRight: "1px solid black" }}>
+          <div>QX1 = {qx1}</div>
+          <div>QX2 = {qx2}</div>
+          <div>PY1 = {py1}</div>
+          <div>PY2 = {py2}</div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Division
+            dividendo={<Operation first={qx1} second={qx2} />}
+            divisor={<Operation first={py1} second={py2} />}
+          />
+          <strong>=</strong>
+          <strong>{result}</strong>
+        </div>
       </div>
     </div>
   );
