@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Box } from "@mui/material";
+import { TextField } from "@mui/material";
 
 const Division = ({ divisor, dividendo, color = "black" }) => {
   return (
